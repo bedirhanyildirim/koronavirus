@@ -15,6 +15,7 @@
             width: 100vw;
             height: 100vh;
             display: flex;
+            overflow: auto;
             align-items: center;
             justify-content: center;
             background-color: #ffffff;
@@ -35,6 +36,7 @@
         }
         #totalInfos, #todayInfos {
             display: flex;
+            max-width: 100vw;
             align-items: center;
             justify-content: center;
         }
@@ -93,9 +95,10 @@
             <div id="todayInfos">
                 Bugün <b id="todayCases">0</b> kişi hastalandı, <b id="todayDeaths">0</b> kişi öldü, <b id="active">0</b> kişi hala hasta.
             </div>
-            <div id="imza">
-                Bu internet sitesi <a href="http://bedirhanyildirim.com" target="_blank">Bedirhan Yıldırım</a> tarafındann geliştirilmiştir.
-            </div>
+            
+        </div>
+        <div id="imza">
+            Bu internet sitesi <a href="http://bedirhanyildirim.com" target="_blank">Bedirhan Yıldırım</a> tarafındann geliştirilmiştir.
         </div>
     </div>
     <script>
