@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Koronavirüs Sayacı</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        #app {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffffff;
+        }
+        #content, #cases, #deaths, #recovered {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+        }
+        #content h4 {
+            font-size: 24px;
+            color: rgba(20, 20, 20, 0.9);
+        }
+        #content h5 {
+            font-size: 16px;
+            color: rgba(20, 20, 20, 0.9);
+        }
+        #totalInfos, #todayInfos {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #todayInfos {
+            margin-top: 50px;
+        }
+        #cases, #deaths, #recovered {
+            padding: 0 40px;
+            width: 100px;
+        }
+        #casesCounter, #deathsCounter, #recoveredCounter {
+            display: flex;
+            color: #000000;
+            font-size: 150px;
+            align-items: center;
+            justify-content: center;
+        }
+        #bayrak {
+            top: 10px;
+            position: absolute;
+        }
+        b {
+            margin: 0 5px;
+        }
+        #imza {
+            bottom: 10px;
+            position: absolute;
+            font-size: 14px;
+        }
+        #imza a {
+            color: #000000;
+            font-weight: bold;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <img id="bayrak" src="https://www.countryflags.io/tr/flat/64.png" />
+        <div id="content">
+            <h4>Toplam</h4>
+            <div id="totalInfos">
+                <div id="cases">
+                    <div id="casesCounter">0</div>
+                    <h5>Vaka</h5>
+                </div>
+                <div id="deaths">
+                    <div id="deathsCounter">0</div>
+                    <h5>Ölüm</h5>
+                </div>
+                <div id="recovered">
+                    <div id="recoveredCounter">0</div>
+                    <h5>İyileşen</h5>
+                </div>
+            </div>
+            <div id="todayInfos">
+                Bugün <b id="todayCases">0</b> kişi hastalandı, <b id="todayDeaths">0</b> kişi öldü, <b id="active">0</b> kişi hala hasta.
+            </div>
+            <div id="imza">
+                Bu internet sitesi <a href="http://bedirhanyildirim.com" target="_blank">Bedirhan Yıldırım</a> tarafındann geliştirilmiştir.
+            </div>
+        </div>
+    </div>
+    <script>
+        getData("https://coronavirus-19-api.herokuapp.com/countries")
+
+        function getData(url){
+            fetch(url)
+            .then(res => res.json())
+            .then(findTr)
+        }
+
+        function findTr(data) {
+            for (let r of data){
+                if (r.country == "Turkey") {
+                    console.log(r)
+                    yazdir(r)
+                }
+            }
+        }
+
+        function yazdir(data) {
+            document.getElementById("casesCounter").innerText = JSON.stringify(data.cases)
+            document.getElementById("deathsCounter").innerText = JSON.stringify(data.deaths)
+            document.getElementById("recoveredCounter").innerText = JSON.stringify(data.recovered)
+            document.getElementById("todayCases").innerText = JSON.stringify(data.todayCases)
+            document.getElementById("todayDeaths").innerText = JSON.stringify(data.todayDeaths)
+            document.getElementById("active").innerText = JSON.stringify(data.active)
+        }
+
+        //https://coronavirus-19-api.herokuapp.com/countries
+        //{"country":"Turkey","cases":47,"todayCases":29,"deaths":0,"todayDeaths":0,"recovered":0,"active":47,"critical":0}
+    </script>
+</body>
+</html>
