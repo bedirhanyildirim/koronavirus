@@ -9,8 +9,15 @@
     display: flex;
     overflow: auto;
     align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     background-color: #ffffff;
+}
+#content {
+    width: 1000px;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: calc(100vw - 30px);
 }
 #content, #cases, #deaths, #recovered {
     display: flex;
@@ -28,16 +35,21 @@
 }
 #totalInfos, #todayInfos {
     display: flex;
-    max-width: 100vw;
+    width: -webkit-fill-available;
     align-items: center;
     justify-content: center;
 }
 #todayInfos {
     margin-top: 50px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+#todayInfos span {
+
 }
 #cases, #deaths, #recovered {
-    padding: 0 40px;
-    width: 100px;
+    padding: 0;
+    width: calc((100vw - 60px)/3);
 }
 #casesCounter, #deathsCounter, #recoveredCounter {
     display: flex;
@@ -47,19 +59,38 @@
     justify-content: center;
 }
 #bayrak {
-    top: 10px;
-    position: absolute;
 }
 b {
     margin: 0 5px;
 }
 #imza {
-    bottom: 10px;
-    position: absolute;
+    display: flex;
+    width: 1000px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    align-items: center;
+    justify-content: center;
+    max-width: calc(100vw - 30px);
+}
+#imza span {
     font-size: 14px;
+    text-align: center;
+    white-space: nowrap;
 }
 #imza a {
     color: #000000;
     font-weight: bold;
     text-decoration: none;
 }
+
+@media only screen and (max-width: 768px) {
+    #casesCounter, #deathsCounter, #recoveredCounter {
+        font-size: calc((100vw - 60px)/6);
+    }
+    #todayInfos span {
+        font-size: calc((100vw - 30px)/30);
+    }
+    #imza span {
+        font-size: calc((100vw - 30px)/30);
+    }
+  }
